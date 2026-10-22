@@ -1,0 +1,1108 @@
+{
+  "schema_version": "1.1",
+  "type_definitions": [
+    {
+      "type": "user"
+    },
+    {
+      "type": "client"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "admin": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          },
+          "member": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "admin": {
+          "this": {}
+        },
+        "member": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "computedUserset": {
+                  "relation": "admin"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "type": "organization"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "admin": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              }
+            ]
+          },
+          "can_manage": {},
+          "member": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          },
+          "organization": {
+            "directly_related_user_types": [
+              {
+                "type": "organization"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "admin": {
+          "this": {}
+        },
+        "can_manage": {
+          "union": {
+            "child": [
+              {
+                "computedUserset": {
+                  "relation": "admin"
+                }
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "admin"
+                  },
+                  "tupleset": {
+                    "relation": "organization"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "member": {
+          "this": {}
+        },
+        "organization": {
+          "this": {}
+        }
+      },
+      "type": "group"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "can_grant": {},
+          "ingester": {
+            "directly_related_user_types": [
+              {
+                "type": "client"
+              }
+            ]
+          },
+          "organization": {
+            "directly_related_user_types": [
+              {
+                "type": "organization"
+              }
+            ]
+          },
+          "reader": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              },
+              {
+                "relation": "member",
+                "type": "organization"
+              }
+            ]
+          },
+          "steward": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "can_grant": {
+          "computedUserset": {
+            "relation": "steward"
+          }
+        },
+        "ingester": {
+          "this": {}
+        },
+        "organization": {
+          "this": {}
+        },
+        "reader": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "computedUserset": {
+                  "relation": "steward"
+                }
+              }
+            ]
+          }
+        },
+        "steward": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "admin"
+                  },
+                  "tupleset": {
+                    "relation": "organization"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "type": "datasource"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "can_grant": {},
+          "parent": {
+            "directly_related_user_types": [
+              {
+                "type": "datasource"
+              }
+            ]
+          },
+          "reader": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              },
+              {
+                "relation": "member",
+                "type": "organization"
+              }
+            ]
+          },
+          "steward": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "can_grant": {
+          "computedUserset": {
+            "relation": "steward"
+          }
+        },
+        "parent": {
+          "this": {}
+        },
+        "reader": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "reader"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              },
+              {
+                "computedUserset": {
+                  "relation": "steward"
+                }
+              }
+            ]
+          }
+        },
+        "steward": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "steward"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "type": "schema"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "blocked": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          },
+          "bypass_row_policies": {},
+          "can_grant": {},
+          "can_read": {},
+          "parent": {
+            "directly_related_user_types": [
+              {
+                "type": "schema"
+              }
+            ]
+          },
+          "reader": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              },
+              {
+                "relation": "member",
+                "type": "organization"
+              }
+            ]
+          },
+          "steward": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "blocked": {
+          "this": {}
+        },
+        "bypass_row_policies": {
+          "computedUserset": {
+            "relation": "steward"
+          }
+        },
+        "can_grant": {
+          "computedUserset": {
+            "relation": "steward"
+          }
+        },
+        "can_read": {
+          "difference": {
+            "base": {
+              "computedUserset": {
+                "relation": "reader"
+              }
+            },
+            "subtract": {
+              "computedUserset": {
+                "relation": "blocked"
+              }
+            }
+          }
+        },
+        "parent": {
+          "this": {}
+        },
+        "reader": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "reader"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              },
+              {
+                "computedUserset": {
+                  "relation": "steward"
+                }
+              }
+            ]
+          }
+        },
+        "steward": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "steward"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "type": "table"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "blocked": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          },
+          "can_grant": {},
+          "can_read": {},
+          "parent": {
+            "directly_related_user_types": [
+              {
+                "type": "table"
+              }
+            ]
+          },
+          "reader": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              },
+              {
+                "relation": "member",
+                "type": "organization"
+              }
+            ]
+          },
+          "steward": {}
+        }
+      },
+      "relations": {
+        "blocked": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "blocked"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "can_grant": {
+          "computedUserset": {
+            "relation": "steward"
+          }
+        },
+        "can_read": {
+          "difference": {
+            "base": {
+              "computedUserset": {
+                "relation": "reader"
+              }
+            },
+            "subtract": {
+              "computedUserset": {
+                "relation": "blocked"
+              }
+            }
+          }
+        },
+        "parent": {
+          "this": {}
+        },
+        "reader": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "reader"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "steward": {
+          "tupleToUserset": {
+            "computedUserset": {
+              "relation": "steward"
+            },
+            "tupleset": {
+              "relation": "parent"
+            }
+          }
+        }
+      },
+      "type": "column"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "can_grant": {},
+          "editor": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          },
+          "organization": {
+            "directly_related_user_types": [
+              {
+                "type": "organization"
+              }
+            ]
+          },
+          "owner": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              }
+            ]
+          },
+          "parent": {
+            "directly_related_user_types": [
+              {
+                "type": "folder"
+              }
+            ]
+          },
+          "viewer": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              },
+              {
+                "relation": "member",
+                "type": "organization"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "can_grant": {
+          "union": {
+            "child": [
+              {
+                "computedUserset": {
+                  "relation": "owner"
+                }
+              },
+              {
+                "computedUserset": {
+                  "relation": "editor"
+                }
+              }
+            ]
+          }
+        },
+        "editor": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "computedUserset": {
+                  "relation": "owner"
+                }
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "editor"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "organization": {
+          "this": {}
+        },
+        "owner": {
+          "this": {}
+        },
+        "parent": {
+          "this": {}
+        },
+        "viewer": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "computedUserset": {
+                  "relation": "editor"
+                }
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "viewer"
+                  },
+                  "tupleset": {
+                    "relation": "parent"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "type": "folder"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "can_delete": {},
+          "can_grant": {},
+          "editor": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          },
+          "folder": {
+            "directly_related_user_types": [
+              {
+                "type": "folder"
+              }
+            ]
+          },
+          "owner": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              }
+            ]
+          },
+          "viewer": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              },
+              {
+                "relation": "member",
+                "type": "organization"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "can_delete": {
+          "computedUserset": {
+            "relation": "owner"
+          }
+        },
+        "can_grant": {
+          "union": {
+            "child": [
+              {
+                "computedUserset": {
+                  "relation": "owner"
+                }
+              },
+              {
+                "computedUserset": {
+                  "relation": "editor"
+                }
+              }
+            ]
+          }
+        },
+        "editor": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "computedUserset": {
+                  "relation": "owner"
+                }
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "editor"
+                  },
+                  "tupleset": {
+                    "relation": "folder"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "folder": {
+          "this": {}
+        },
+        "owner": {
+          "this": {}
+        },
+        "viewer": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "computedUserset": {
+                  "relation": "editor"
+                }
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "viewer"
+                  },
+                  "tupleset": {
+                    "relation": "folder"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "type": "chart"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "can_delete": {},
+          "can_grant": {},
+          "editor": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          },
+          "folder": {
+            "directly_related_user_types": [
+              {
+                "type": "folder"
+              }
+            ]
+          },
+          "owner": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              }
+            ]
+          },
+          "viewer": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              },
+              {
+                "relation": "member",
+                "type": "organization"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "can_delete": {
+          "computedUserset": {
+            "relation": "owner"
+          }
+        },
+        "can_grant": {
+          "union": {
+            "child": [
+              {
+                "computedUserset": {
+                  "relation": "owner"
+                }
+              },
+              {
+                "computedUserset": {
+                  "relation": "editor"
+                }
+              }
+            ]
+          }
+        },
+        "editor": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "computedUserset": {
+                  "relation": "owner"
+                }
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "editor"
+                  },
+                  "tupleset": {
+                    "relation": "folder"
+                  }
+                }
+              }
+            ]
+          }
+        },
+        "folder": {
+          "this": {}
+        },
+        "owner": {
+          "this": {}
+        },
+        "viewer": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "computedUserset": {
+                  "relation": "editor"
+                }
+              },
+              {
+                "tupleToUserset": {
+                  "computedUserset": {
+                    "relation": "viewer"
+                  },
+                  "tupleset": {
+                    "relation": "folder"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "type": "diagram"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "editor": {},
+          "viewer": {},
+          "visualization": {
+            "directly_related_user_types": [
+              {
+                "type": "chart"
+              },
+              {
+                "type": "diagram"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "editor": {
+          "tupleToUserset": {
+            "computedUserset": {
+              "relation": "editor"
+            },
+            "tupleset": {
+              "relation": "visualization"
+            }
+          }
+        },
+        "viewer": {
+          "tupleToUserset": {
+            "computedUserset": {
+              "relation": "viewer"
+            },
+            "tupleset": {
+              "relation": "visualization"
+            }
+          }
+        },
+        "visualization": {
+          "this": {}
+        }
+      },
+      "type": "query"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "can_delete": {},
+          "can_grant": {},
+          "editor": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              }
+            ]
+          },
+          "owner": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              }
+            ]
+          },
+          "viewer": {
+            "directly_related_user_types": [
+              {
+                "type": "user"
+              },
+              {
+                "relation": "member",
+                "type": "group"
+              },
+              {
+                "relation": "member",
+                "type": "organization"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "can_delete": {
+          "computedUserset": {
+            "relation": "owner"
+          }
+        },
+        "can_grant": {
+          "computedUserset": {
+            "relation": "owner"
+          }
+        },
+        "editor": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "computedUserset": {
+                  "relation": "owner"
+                }
+              }
+            ]
+          }
+        },
+        "owner": {
+          "this": {}
+        },
+        "viewer": {
+          "union": {
+            "child": [
+              {
+                "this": {}
+              },
+              {
+                "computedUserset": {
+                  "relation": "editor"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "type": "workspace"
+    },
+    {
+      "metadata": {
+        "relations": {
+          "editor": {},
+          "viewer": {},
+          "workspace": {
+            "directly_related_user_types": [
+              {
+                "type": "workspace"
+              }
+            ]
+          }
+        }
+      },
+      "relations": {
+        "editor": {
+          "tupleToUserset": {
+            "computedUserset": {
+              "relation": "editor"
+            },
+            "tupleset": {
+              "relation": "workspace"
+            }
+          }
+        },
+        "viewer": {
+          "tupleToUserset": {
+            "computedUserset": {
+              "relation": "viewer"
+            },
+            "tupleset": {
+              "relation": "workspace"
+            }
+          }
+        },
+        "workspace": {
+          "this": {}
+        }
+      },
+      "type": "widget"
+    }
+  ]
+}

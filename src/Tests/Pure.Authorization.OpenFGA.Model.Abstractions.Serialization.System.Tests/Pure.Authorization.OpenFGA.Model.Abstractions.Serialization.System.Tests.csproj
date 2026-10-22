@@ -8,11 +8,15 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="10.1.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.11.0" />
+    <PackageReference Include="Pure.Primitives" Version="3.7.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="4.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System\Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fixtures/model.json" LogicalName="model.json" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Xunit" />
