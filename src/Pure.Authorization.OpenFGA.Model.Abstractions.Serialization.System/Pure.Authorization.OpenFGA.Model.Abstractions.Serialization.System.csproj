@@ -5,8 +5,7 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <IsAotCompatible>true</IsAotCompatible>
-    <!--<EnablePackageValidation>true</EnablePackageValidation>
-    <PackageValidationBaselineVersion>x.x.x</PackageValidationBaselineVersion>-->
+    <EnablePackageValidation>true</EnablePackageValidation>
   </PropertyGroup>
   <PropertyGroup>
     <PackageId>Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System</PackageId>
@@ -17,6 +16,14 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/kudima03/Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System</PackageProjectUrl>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference
+      Include="Pure.Authorization.OpenFGA.Model.Abstractions"
+      Version="0.1.0-preview.0.1.0"
+    />
+    <PackageReference Include="Pure.Primitives" Version="3.7.0" />
+    <PackageReference Include="Pure.Primitives.String.Operations" Version="1.7.0" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="../../README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
