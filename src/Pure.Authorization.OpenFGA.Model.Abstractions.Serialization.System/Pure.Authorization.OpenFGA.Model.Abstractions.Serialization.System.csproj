@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net8.0;net9.0;net10.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <IsAotCompatible>true</IsAotCompatible>
+    <!--<EnablePackageValidation>true</EnablePackageValidation>
+    <PackageValidationBaselineVersion>x.x.x</PackageValidationBaselineVersion>-->
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageId>Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System</PackageId>
+    <RootNamespace>Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System</RootNamespace>
+    <AssemblyName>Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System</AssemblyName>
+    <Authors>Dmitry Kurochkin</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/kudima03/Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System</PackageProjectUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+</Project>

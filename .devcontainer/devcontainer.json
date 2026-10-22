@@ -1,5 +1,5 @@
 {
-  "name": "<repo-name>",
+  "name": "Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System",
   "image": "mcr.microsoft.com/devcontainers/dotnet:dev-10.0",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {},

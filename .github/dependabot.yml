@@ -2,11 +2,15 @@ version: 2
 updates:
 - package-ecosystem: nuget
   directories:
-    - "src/<repo-name>"
-    - "src/Tests/<repo-name>.Tests"
+    - "src/Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System"
+    - "src/Tests/Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System.Tests"
   schedule:
     interval: daily
 - package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: weekly
+- package-ecosystem: "devcontainers"
   directory: "/"
   schedule:
     interval: weekly
