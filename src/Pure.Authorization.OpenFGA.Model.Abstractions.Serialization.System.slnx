@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="Tests/Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System.Tests/Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System.Tests.csproj" />
+  </Folder>
+  <Project Path="Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System/Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System.csproj" />
+</Solution>
