@@ -9,7 +9,7 @@
 
 ## Overview
 
-`Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System` provides `System.Text.Json` converters between the interfaces defined in [`Pure.Authorization.OpenFGA.Model.Abstractions`](https://github.com/kudima03/Pure.Authorization.OpenFGA.Model.Abstractions/tree/0.1.0-preview.0.1.0) and the JSON format used by [OpenFGA](https://openfga.dev): authorization models, tuple keys, and subject and object strings. The converters target the abstract interfaces, so any implementation of them can be written to OpenFGA's JSON; reading produces internal sealed records that implement the same interfaces.
+`Pure.Authorization.OpenFGA.Model.Abstractions.Serialization.System` provides `System.Text.Json` converters between the interfaces defined in [`Pure.Authorization.OpenFGA.Model.Abstractions`](https://github.com/kudima03/Pure.Authorization.OpenFGA.Model.Abstractions/tree/0.1.0-preview.0.2.0) and the JSON format used by [OpenFGA](https://openfga.dev): authorization models, tuple keys, and subject and object strings. The converters target the abstract interfaces, so any implementation of them can be written to OpenFGA's JSON; reading produces internal sealed records that implement the same interfaces.
 
 ## Converters
 
@@ -96,7 +96,7 @@ A relation's rewrite (`IRewrite`) has no converter of its own: OpenFGA stores th
 
 ## Dependencies
 
-- [`Pure.Authorization.OpenFGA.Model.Abstractions`](https://github.com/kudima03/Pure.Authorization.OpenFGA.Model.Abstractions/tree/0.1.0-preview.0.1.0) — read-only interfaces for the OpenFGA authorization model, tuples, subjects and objects
+- [`Pure.Authorization.OpenFGA.Model.Abstractions`](https://github.com/kudima03/Pure.Authorization.OpenFGA.Model.Abstractions/tree/0.1.0-preview.0.2.0) — read-only interfaces for the OpenFGA authorization model, tuples, subjects and objects
 - [`Pure.Primitives`](https://github.com/kudima03/Pure.Primitives/tree/3.7.0) — the `IString` implementation behind read values
 - [`Pure.Primitives.String.Operations`](https://github.com/kudima03/Pure.Primitives.String.Operations/tree/1.7.0) — slicing and joining of `type:id#relation` strings
 
