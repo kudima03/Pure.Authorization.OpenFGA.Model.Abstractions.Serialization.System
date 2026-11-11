@@ -106,6 +106,7 @@ A relation's rewrite (`IRewrite`) has no converter of its own: OpenFGA stores th
 - .NET 8
 - .NET 9
 - .NET 10
+- .NET 11
 
 ## Installation
 
